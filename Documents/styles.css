@@ -1,0 +1,82 @@
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  font-family: sans-serif;
+  background-color: lightgray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* player/main */
+.Card {
+  min-width: 320px;
+  background-image: linear-gradient(black, gray);
+  border-radius: 1rem;
+  padding: 2rem;
+  color: white;
+  box-shadow: 2px 2px 3px black;
+}
+
+/* title */
+.Card__title {
+  margin-top: 0;
+  text-align: center;
+}
+/* cover */
+.Card__cover {
+  width: 128px;
+  height: auto;
+  border-radius: 0.3rem;
+  display: block;
+  margin: 0 auto 1rem auto;
+}
+
+/* progress bar */
+.Card__progress-container {
+  height: 0.6rem;
+  background-color: lightgray;
+  margin-bottom: 1rem;
+}
+.Card__progress {
+  background-color: goldenrod;
+  width: 40%;
+  height: 100%;
+}
+
+/* controls */
+.Card__controls {
+  display: flex;
+
+  /* reparte el espácio */
+  justify-content: space-evenly;
+}
+
+.Card__controls button {
+  background-color: transparent;
+  border: none;
+  margin-bottom: 1rem;
+}
+.Card__controls i {
+  font-size: 1.7rem;
+  color: wheat;
+}
+
+/* songs list */
+.Card__songs {
+  margin: 0;
+  padding: 0;
+  /* quita los puntitos de la lista */
+  list-style: none;
+}
+.Card__songs li {
+  margin-bottom: 1.5rem;
+}
+.Card__songs a {
+  color: white;
+  text-decoration: none;
+}
