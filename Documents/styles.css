@@ -77,6 +77,10 @@ body {
   margin-bottom: 1.5rem;
 }
 .Card__songs a {
-  color: white;
+  color: lightgray;
   text-decoration: none;
+}
+.Card__songs a.active {
+  color: white;
+  font-weight: bold;
 }

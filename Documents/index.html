@@ -8,7 +8,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css"
     />
     <link rel="stylesheet" href="./styles.css" />
-    <script src="./main.js"></script>
+    <script defer src="./main.js"></script>
     <title>Card-music</title>
   </head>
   <body>
@@ -18,6 +18,10 @@
       <h1 class="Card__title">Nueva cancion</h1>
       <!-- cover -->
       <img src="../Imagenes/gatito.jpg" alt="" class="Card__cover" />
+
+      <!-- audio HTML media element -->
+      <audio src="" id="audio"></audio>
+
       <!-- progress bar -->
       <div class="Card__progress-container">
         <section class="Card__progress"></section>
@@ -37,10 +41,10 @@
       </section>
 
       <!-- song list -->
-      <ul class="Card__songs">
-        <li><a href="#">Song 1</a></li>
-        <li><a href="#">Song 2</a></li>
-        <li><a href="#">Song 3</a></li>
+      <ul class="Card__songs" id="songs">
+        <!-- <li><a href="#">Song 1</a></li>
+        <li><a class="active" href="#">Song 2</a></li>
+        <li><a href="#">Song 3</a></li> -->
       </ul>
     </main>
   </body>
