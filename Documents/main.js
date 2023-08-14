@@ -23,6 +23,9 @@ const songList = [
 
 const songs = document.getElementById("songs")
 const audio = document.getElementById("audio")
+const prevBton = document.getElementById("back")
+const playBton = document.getElementById("play")
+const nextBton = document.getElementById("next")
 
 //cargar canciones y mostrar el listado de canciones
 function loadSongs(){
@@ -45,9 +48,34 @@ function loadSongs(){
 }
 //cargar cancion seleccionada
 function loadSong(songIndex){
-  audio.src = "./audio/" + songList[songIndex].file
+  audio.src = "../audio/" + songList[songIndex].file
   audio.play()
 }
 
 //GO
 loadSongs()
+
+//verificar si esta reproduciendo la musica
+let isPlaying = false
+
+//funcion play
+function PlaySong(){
+  isPlaying = true
+  playBton.setAttribute('title', 'pause')
+  playBton.setAttribute('file', 'pause')
+  songList.play()
+  
+
+}
+//funcion pause
+function pauseSong(){
+  isPlaying = false
+  playBton.setAttribute('title', 'play')
+  playBton.setAttribute('file', 'play')
+  songList.pause()
+  
+
+}
+
+//al hacer click en el boton play activa las funciones play o pause
+playBton.addEventListener('click', () => (isPlaying ? pauseSong() : PlaySong()))
