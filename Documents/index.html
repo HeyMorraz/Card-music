@@ -8,23 +8,23 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css"
     />
     <link rel="stylesheet" href="./styles.css" />
-    <script defer src="./main.js"></script>
+    <script src="./main.js" defer></script>
     <title>Card-music</title>
   </head>
   <body>
     <!-- main o player -->
     <main class="Card">
       <!-- title -->
-      <h1 class="Card__title">Nueva cancion</h1>
+      <h1 class="Card__title" id="title">Nueva cancion</h1>
       <!-- cover -->
-      <img src="../Imagenes/gatito.jpg" alt="" class="Card__cover" />
+      <img src="../Imagenes/gatito.jpg" id="cover" alt="" class="Card__cover" />
 
       <!-- audio HTML media element -->
-      <audio src="../audio/" id="audio"></audio>
+      <audio src="" id="audio"></audio>
 
       <!-- progress bar -->
-      <div class="Card__progress-container">
-        <section class="Card__progress"></section>
+      <div class="Card__progressContainer" id="progressContainer">
+        <section class="Card__progress" id="progress"></section>
       </div>
 
       <!-- controls -->

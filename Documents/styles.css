@@ -41,11 +41,13 @@ body {
   height: 0.6rem;
   background-color: lightgray;
   margin-bottom: 1rem;
+  cursor: pointer;
 }
 .Card__progress {
   background-color: goldenrod;
   width: 40%;
   height: 100%;
+  transition: width 0.1s linear;
 }
 
 /* controls */
@@ -54,6 +56,7 @@ body {
 
   /* reparte el espácio */
   justify-content: space-evenly;
+  margin-bottom: 1rem;
 }
 
 .Card__controls button {

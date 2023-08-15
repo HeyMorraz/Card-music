@@ -3,29 +3,54 @@ const songList = [
     {
         title: "Acoustic Breeze",
         file: "acousticbreeze.mp3",
-        cover: "1.jpeg"
+        cover: "Imagenes/gatito.jpg"
 
     },
     {
         title: "A New Beginning",
         file: "anewbeginning.mp3",
-        cover: "2.jpeg"
+        cover: "Imagenes/gatito2.jpg"
     },
     {
         title: "Creative Minds",
         file: "creativeminds.mp3",
-        cover: "3.jpeg"
+        cover: "Imagenes/gatito3.jpg"
     },
 ]
+
+let actualSong = null
+
 
 
 //capturar elementos del DOM para trabajar con js
 
 const songs = document.getElementById("songs")
 const audio = document.getElementById("audio")
-const prevBton = document.getElementById("back")
-const playBton = document.getElementById("play")
-const nextBton = document.getElementById("next")
+const cover = document.getElementById("cover")
+const title = document.getElementById("title")
+const prev = document.getElementById("back")
+const play = document.getElementById("play")
+const next = document.getElementById("next")
+const progress = document.getElementById("progress")
+const progressContainer = document.getElementById("progressContainer")
+progressContainer.addEventListener("click", setProgress)
+
+//escuchar el eleneto audio
+audio.addEventListener("timeUpdate", updateProgress)
+
+//esuchar los clicks en los controles
+play.addEventListener("click", () => {
+  if(audio.paused){
+    playSong()
+  }
+    else{
+      pauseSong()
+  }
+  
+})
+
+next.addEventListener("click", () => nextSong())
+prev.addEventListener("click", () => prevSong())
 
 //cargar canciones y mostrar el listado de canciones
 function loadSongs(){
@@ -46,36 +71,107 @@ function loadSongs(){
     songs.appendChild(li)
   })
 }
+
 //cargar cancion seleccionada
 function loadSong(songIndex){
-  audio.src = "../audio/" + songList[songIndex].file
-  audio.play()
+
+    if(songIndex !== actualSong){
+      changeActiveClass(actualSong, songIndex)
+      actualSong = songIndex
+      audio.src = "../audio/" + songList[songIndex].file
+      playSong()
+      changeTitle(songIndex)
+      changeCover(songIndex)
+
+    }
+  
 }
+
+//actualizar la barra de progreso
+function updateProgress(event){
+  const {duration, currentTime} = event.srcElement
+  const percent = (currentTime / duration ) * 100
+  progress.style.width = percent + "%"
+}
+
+
+
+//hacer la barra de progreso clicable
+function setProgress(event){
+  const totalWith  = this.offsetWith
+  const progressWith = event.offsetX
+  const current = (progressWith / totalWith) * audio.duration
+  audio.currentTime = current
+}
+
+//actualizar controles
+function updateControls(){
+  if(audio.paused){
+    playBton.classList.remove("fa-pause")
+    playBton.classList.add("fa-play")
+  }
+  else{
+      playBton.classList.add("fa-pause")
+      playBton.classList.remove("fa-play")
+  }
+}
+
+//reproducir cancion
+function playSong(){
+  if(actualSong !== null){
+    audio.play()
+    updateControls()
+  }
+}
+
+//pausar cancion
+function pauseSong(){
+  audio.pause()
+  updateControls()
+}
+
+//cambiar clase activa
+function changeActiveClass(lastIndex, newIndex){
+     const links = document.querySelectorAll("a")
+     if(lastIndex != null){
+      links[lastIndex.classList.remove("active")]
+     }
+     links[newIndex].classList.add("active")
+
+}
+
+//cambiar cover de la cancion
+function changeCover(songIndex){
+   cover.src = "../Imagenes" + songList[songIndex].cover
+}
+
+//cambiar titulo
+function changeTitle(songIndex){
+  title.innerText = songList[songIndex].title
+}
+
+//anterior cancion
+function prevSong(){
+  if(actualSong > 0){
+    loadSong(actualSong - 1)
+  }
+  else{
+    loadSong(songList.length - 1)
+  }
+}
+
+//siguente cancion
+function nextSong(){
+  if(actualSong < songList.length - 1){
+    loadSong(actualSong + 1)
+  }
+  else{
+    loadSong(0)
+  }
+}
+
+//lanzar siguente cancion cuando se acaba la actual
+audio.addEventListener("ended", () => nextSong())
 
 //GO
 loadSongs()
-
-//verificar si esta reproduciendo la musica
-let isPlaying = false
-
-//funcion play
-function PlaySong(){
-  isPlaying = true
-  playBton.setAttribute('title', 'pause')
-  playBton.setAttribute('file', 'pause')
-  songList.play()
-  
-
-}
-//funcion pause
-function pauseSong(){
-  isPlaying = false
-  playBton.setAttribute('title', 'play')
-  playBton.setAttribute('file', 'play')
-  songList.pause()
-  
-
-}
-
-//al hacer click en el boton play activa las funciones play o pause
-playBton.addEventListener('click', () => (isPlaying ? pauseSong() : PlaySong()))
