@@ -107,12 +107,12 @@ function setProgress(event){
 //actualizar controles
 function updateControls(){
   if(audio.paused){
-    playBton.classList.remove("fa-pause")
-    playBton.classList.add("fa-play")
+    play.classList.remove("fa-pause")
+    play.classList.add("fa-play")
   }
   else{
-      playBton.classList.add("fa-pause")
-      playBton.classList.remove("fa-play")
+      play.classList.add("fa-pause")
+      play.classList.remove("fa-play")
   }
 }
 
@@ -142,7 +142,7 @@ function changeActiveClass(lastIndex, newIndex){
 
 //cambiar cover de la cancion
 function changeCover(songIndex){
-   cover.src = "../Imagenes" + songList[songIndex].cover
+   cover.src = "../Imagenes/" + songList[songIndex].cover
 }
 
 //cambiar titulo
