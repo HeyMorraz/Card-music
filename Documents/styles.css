@@ -37,17 +37,15 @@ body {
 }
 
 /* progress bar */
-.Card__progress-container {
+.Card__progressContainer {
   height: 0.6rem;
   background-color: lightgray;
   margin-bottom: 1rem;
-  cursor: pointer;
 }
 .Card__progress {
   background-color: goldenrod;
-  width: 40%;
+  width: 0;
   height: 100%;
-  transition: width 0.1s linear;
 }
 
 /* controls */
@@ -62,11 +60,10 @@ body {
 .Card__controls button {
   background-color: transparent;
   border: none;
-  margin-bottom: 1rem;
 }
 .Card__controls i {
   font-size: 1.7rem;
-  color: wheat;
+  color: white;
 }
 
 /* songs list */
@@ -77,7 +74,7 @@ body {
   list-style: none;
 }
 .Card__songs li {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 .Card__songs a {
   color: lightgray;

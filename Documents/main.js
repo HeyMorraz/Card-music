@@ -3,18 +3,18 @@ const songList = [
     {
         title: "Acoustic Breeze",
         file: "acousticbreeze.mp3",
-        cover: "Imagenes/gatito.jpg"
+        cover: "gatito.jpg"
 
     },
     {
         title: "A New Beginning",
         file: "anewbeginning.mp3",
-        cover: "Imagenes/gatito2.jpg"
+        cover: "gatito2.jpg"
     },
     {
         title: "Creative Minds",
         file: "creativeminds.mp3",
-        cover: "Imagenes/gatito3.jpg"
+        cover: "gatito3.jpg"
     },
 ]
 
@@ -31,19 +31,19 @@ const title = document.getElementById("title")
 const prev = document.getElementById("back")
 const play = document.getElementById("play")
 const next = document.getElementById("next")
-const progress = document.getElementById("progress")
 const progressContainer = document.getElementById("progressContainer")
+const progress = document.getElementById("progress")
 progressContainer.addEventListener("click", setProgress)
 
 //escuchar el eleneto audio
-audio.addEventListener("timeUpdate", updateProgress)
+audio.addEventListener("timeupdate", updateProgress)
 
 //esuchar los clicks en los controles
 play.addEventListener("click", () => {
   if(audio.paused){
     playSong()
   }
-    else{
+  else{
       pauseSong()
   }
   
@@ -78,7 +78,7 @@ function loadSong(songIndex){
     if(songIndex !== actualSong){
       changeActiveClass(actualSong, songIndex)
       actualSong = songIndex
-      audio.src = "../audio/" + songList[songIndex].file
+      audio.src= "../audio/" + songList[songIndex].file
       playSong()
       changeTitle(songIndex)
       changeCover(songIndex)
@@ -91,7 +91,7 @@ function loadSong(songIndex){
 function updateProgress(event){
   const {duration, currentTime} = event.srcElement
   const percent = (currentTime / duration ) * 100
-  progress.style.width = percent + "%"
+  progress.style.width = percent +  "%"
 }
 
 
@@ -133,7 +133,7 @@ function pauseSong(){
 //cambiar clase activa
 function changeActiveClass(lastIndex, newIndex){
      const links = document.querySelectorAll("a")
-     if(lastIndex != null){
+     if(lastIndex !== null){
       links[lastIndex.classList.remove("active")]
      }
      links[newIndex].classList.add("active")
