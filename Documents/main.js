@@ -31,8 +31,9 @@ const title = document.getElementById("title")
 const prev = document.getElementById("back")
 const play = document.getElementById("play")
 const next = document.getElementById("next")
-const progressContainer = document.getElementById("progressContainer")
 const progress = document.getElementById("progress")
+const progressContainer = document.getElementById("progressContainer")
+
 progressContainer.addEventListener("click", setProgress)
 
 //escuchar el eleneto audio
@@ -78,7 +79,7 @@ function loadSong(songIndex){
     if(songIndex !== actualSong){
       changeActiveClass(actualSong, songIndex)
       actualSong = songIndex
-      audio.src= "../audio/" + songList[songIndex].file
+      audio.src  = "../audio/" + songList[songIndex].file
       playSong()
       changeTitle(songIndex)
       changeCover(songIndex)
@@ -98,9 +99,9 @@ function updateProgress(event){
 
 //hacer la barra de progreso clicable
 function setProgress(event){
-  const totalWith  = this.offsetWith
-  const progressWith = event.offsetX
-  const current = (progressWith / totalWith) * audio.duration
+  const totalWidth = this.offsetWidth
+  const progressWidth = event.offsetX
+  const current = (progressWidth / totalWidth) * audio.duration
   audio.currentTime = current
 }
 
@@ -109,10 +110,12 @@ function updateControls(){
   if(audio.paused){
     play.classList.remove("fa-pause")
     play.classList.add("fa-play")
+    
   }
   else{
       play.classList.add("fa-pause")
       play.classList.remove("fa-play")
+      
   }
 }
 
@@ -134,7 +137,7 @@ function pauseSong(){
 function changeActiveClass(lastIndex, newIndex){
      const links = document.querySelectorAll("a")
      if(lastIndex !== null){
-      links[lastIndex.classList.remove("active")]
+      links[lastIndex].classList.remove("active")
      }
      links[newIndex].classList.add("active")
 
